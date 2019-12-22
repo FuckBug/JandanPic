@@ -12,7 +12,7 @@
 import urllib.request
 import re
 from bs4 import BeautifulSoup
-
+import time
 #读取首页的HTML
 url = 'http://jandan.net/pic'
 request = urllib.request.urlopen(url)
@@ -22,17 +22,31 @@ elif request.code == 404:
     print("404 NOT FOUND")
 else:
     print(request.code)
-
 jandanHTML = request.read().decode("utf-8")
-#正则表达
-jandanpic = re.findall('src="(.+?).jpg',jandanHTML)
+
+#正则表达,提取出原图链接；
+# jandanpic = re.findall('<a href="(.+?)large(.+?)" target="_blank" class="view_img_link"',jandanHTML)
+jandanpic = re.findall('//wx(.+?)/large(.+?)" target="_blank" class="view_img_link"',jandanHTML)
+# jandanpic = re.findall('src="(.+?).jpg',jandanHTML)
+# print(jandanpic)
 
 
-n = 10   #定义n,递增命名图片名
-for jpgurl in jandanpic:
-    n = n + 1
-    jpgurl = "https:" + jpgurl +".jpg"
-    # print(jpgurl)
-    urllib.request.urlretrieve(jpgurl,r"C:\Users\Admin\Pictures\Jandan\{}.jpg".format(n))
-    print("正在下载第" + str(n) + "张图片")
-print(r"下载完成!图片保存在C:\Users\Admin\Pictures\Jandan")
+#循环遍历匹配出来的链接
+for i in jandanpic:
+    #合并链接
+    url = "http://wx" + i[0] + "/large" + i[1]
+    print(url)
+
+    #定义时间戳为图片命名
+    # time = int(time.time() * 1000000)
+    NowTime = int(time.time() * 1000000)
+
+    #判断需要保存的图片格式
+    PicFormat = re.findall('jpg',url)
+    # print(PicFormat)
+    if(PicFormat):
+        urllib.request.urlretrieve(url, "/Users/callan/pictures/jandan/{}.png".format(NowTime))
+    else:
+        urllib.request.urlretrieve(url, "/Users/callan/pictures/jandan/{}.gif".format(NowTime))
+
+    print("保存成功,文件名：" + str(NowTime))
