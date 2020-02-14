@@ -1,14 +1,9 @@
-#jandan
-#仅用于学习
-#页面url = "http://jandan.net/pic/MjAxOTEyMDMtMTE2"
-#base64编码   MjAxOTEyMDMtMTE2 = 20191203-116
+"""
+该文件已更新在同一级目录下的文件夹中
+这是最初的版本,功能只能下载一页图片
+为了更好地体验,建议使用新版本
+"""
 
-#需求:下载jandan无聊图
-#思路:
-#   0:读取jandan首页
-#   1:从步骤1 读取页数和页数的url
-#   2:读取每页的图片对应的url
-#   3:下载并保存
 import urllib.request
 import re
 from bs4 import BeautifulSoup
