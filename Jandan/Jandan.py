@@ -67,7 +67,7 @@ def web_pages(url):
         print('网络异常!')
         exit()
     html = r.text
-    result = re.findall('[e-r]{4}\W{4}[a-z]{6}\W[a-z]{3}\W[a-z]{3}\W[a-zA-Z0-9]+\W[a-z$]*\W\s[a-z]{5}\W{2}[a-z]{8}',html)
+    result = re.findall('[e-r]{4}\W{4}[a-z]{6}\W[a-z]{3}\W[a-z]{3}\W[a-zA-Z0-9]+\W+[a-z$]*\W*[a-z]{5}\W{2}[a-z]{8}',html)
     # print(result)
     result = str(result[0]).split('"',2)
     global page_link
