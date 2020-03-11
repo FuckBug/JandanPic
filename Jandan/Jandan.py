@@ -121,7 +121,7 @@ def pic_down(download_path):
 
         # 判断图片是否已经下载过
         down_history = './Download.txt'
-        with open(down_history,'r') as f:
+        with open(down_history,'w+') as f:
             data = f.read()
 
             data = re.findall(link,data)
