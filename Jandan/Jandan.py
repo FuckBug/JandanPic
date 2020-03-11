@@ -120,12 +120,17 @@ def pic_down(download_path):
         print("图片名称:{}".format(pic_name))
 
         # 判断图片是否已经下载过
-        down_history = './Download.txt'
-        with open(down_history,'w+') as f:
-            data = f.read()
-
-            data = re.findall(link,data)
-
+        try:
+            with open('./Download.txt', 'r') as f:
+                data = f.read()
+                data = re.findall(link, data)
+        except FileNotFoundError:
+            with open('./Download.txt', 'a') as f:
+                f.write('')
+        except UnboundLocalError:
+            with open('./Download.txt', 'a') as f:
+                f.write('')
+                
             if data == []:
                 print('OK,Downloading')
 
@@ -169,6 +174,9 @@ def down_all(num):
         url = page_link
     print("任务完成!")
 
-down_all(num)
 
+    try:
+        down_all(num)
+    except KeyboardInterrupt:
+        print("\n已手动停止运行!!!!!")
 
