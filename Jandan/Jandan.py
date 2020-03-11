@@ -120,16 +120,12 @@ def pic_down(download_path):
         print("图片名称:{}".format(pic_name))
 
         # 判断图片是否已经下载过
-        try:
-            with open('./Download.txt', 'r') as f:
-                data = f.read()
-                data = re.findall(link, data)
-        except FileNotFoundError:
-            with open('./Download.txt', 'a') as f:
-                f.write('')
-        except UnboundLocalError:
-            with open('./Download.txt', 'a') as f:
-                f.write('')
+        # 先创建一个空文本,以防万一
+        with open('./Downloads.txt', 'a') as f:
+            f.write('')
+        with open('./Downloads.txt', 'r') as f:
+            data = f.read()
+            data = re.findall(link, data)
                 
             if data == []:
                 print('OK,Downloading')
