@@ -81,9 +81,17 @@ def downPic(links):
         picName = picName[0]
         print("图片名称:{}".format(picName))
 
-        with open('./Download.txt','w+') as f:
-            data = f.read()
-            data = re.findall(link,data)
+        try:
+            with open('./Downloads.txt', 'r') as f:
+                data = f.read()
+                data = re.findall(link, data)
+        except FileNotFoundError:
+            with open('./Downloads.txt', 'a') as f:
+                f.write('')
+        except UnboundLocalError:
+            with open('./Downloads.txt', 'a') as f:
+                f.write('')
+                
         if data == []:
             print("Downloading...")
             downLink = requests.get(link)
