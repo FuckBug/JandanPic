@@ -12,7 +12,7 @@ import requests, re, os, base64,time
 """
 Download Jandan pictures.
 __author__ = 'FuckBug'
-This object on github: https://github.com/FuckBug/
+This object on github: https://github.com/FuckBug/MyWebSpider/Jandan
 
 I'm a rookie.
 If you found some bugs, please correct me fix it's.
@@ -180,7 +180,7 @@ if __name__ == '__main__':
 ####################################################################################
                                                                                    #
                                                                                    #
-        '请在此输入想要爬取的页面个数,并确保您输入的是大于0的整数'                            #
+        '请在此输入想要爬取的页面个数,并确保您输入的是大于0的整数'                          #
         num = 100                                                                  #
                                                                                    #
                                                                                    #
