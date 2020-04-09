@@ -108,9 +108,9 @@ def pic_down():
 
     pic_sum = len(down_link)
     print('本页共抓取到{}张图片链接\n'.format(pic_sum))
-
+    # a = 本页下载数, n = 总下载数
     a = 0
-    n = 0
+    global n
     for link in down_link:
         # 2020.4更新(图片链接域名ws1/ws2.sinaimg.cn出现无法访问的情况;更换二级域名的前缀即可;
         link = link.split('.',1)
@@ -146,7 +146,7 @@ def pic_down():
                     with open(download_path + "/" + pic_name + ".jpg", 'wb')as f:
                         f.write(down.content)
                     n = n + 1  # 计数
-                    print("OK,目前共下载{}张,已下载本页第{}张图片,本页还剩{}张待下载\n".format(n, a, (pic_sum - a)))
+                    print("OK,本次共下载{}张,已下载本页第{}张图片,本页还剩{}张待下载\n".format(n, a, (pic_sum - a)))
 
                 else:
                     # urllib.request.urlretrieve(link, download_path + "/{}.gif".format(pic_name))
@@ -154,7 +154,7 @@ def pic_down():
                     with open(download_path + "/" + pic_name + ".gif" , 'wb')as f:
                         f.write(down.content)
                     n = n + 1  # 计数
-                    print("OK,目前共下载{}张,已下载本页第{}张图片,本页还剩{}张待下载\n".format(n, a, (pic_sum - a)))
+                    print("OK,本次共下载{}张,已下载本页第{}张图片,本页还剩{}张待下载\n".format(n, a, (pic_sum - a)))
 
                 # 将链接写入到文本中
                 with open('./DownloadsGrils.txt', 'a') as f:
@@ -162,13 +162,14 @@ def pic_down():
 
             else:
                 print('已跳过,因为该图片已经下载过\n')
-    print("本页任务完成!!!本页共下载或已下载过{}张图片\n\n".format((a)))
+    print("本页任务完成!!!本页此次下载或已下载过{}张图片\n\n".format((a)))
 
 
 '循环下载图片'
 def main(num):
     print("开始运行!")
-    url = "http://jandan.net/ooxx"
+    # url = "http://jandan.net/ooxx"
+    url = "https://jandan.net/ooxx/MjAyMDA0MDktNzQ=#comments"
 
     a = 1
     while a <= num:
